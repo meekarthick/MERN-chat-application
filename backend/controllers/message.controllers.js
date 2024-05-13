@@ -45,7 +45,6 @@ export const sendMessage = async (req,res) =>{
 
 export const getMessages = async(req,res) =>{
     try {
-        console.log(req.params);
         const {id : userToChat} = req.params;
         const senderId = req.user._id
 
@@ -57,7 +56,7 @@ export const getMessages = async(req,res) =>{
             participants : {$all : [senderId,userToChat]}
         }).populate("messages")
 
-
+         console.log(conversation);
 // if there is no conversation found return empty array
         if(!conversation) return res.status(200).json([])
         
@@ -65,7 +64,7 @@ export const getMessages = async(req,res) =>{
     } 
     
     catch (error) {
-        console.log("Error in sendMessage controller:",error.message);
+        console.log("Error in getMessage controller:",error.message);
         return res.status(500).json({error:"Internal server error"}) 
     }
 }  

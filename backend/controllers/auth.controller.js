@@ -13,6 +13,7 @@ import generateTokenandSetCookie from "../utils/generateToken.js";
          }
 
          const user = await User.findOne({username})
+         console.log(user);
          if(user){
             return res.status(400).json({error:"UserName already exists"})
          }
@@ -57,7 +58,8 @@ import generateTokenandSetCookie from "../utils/generateToken.js";
       const {username,password} = req.body;
       const user = await User.findOne({username})
       const isPassCorrect = await bcrypt.compare(password,user?.password || "")
-      
+      console.log(user.username);
+      console.log(isPassCorrect);
       if(!user || !isPassCorrect){
          return res.status(400).json({error:"Invalid username or password"})
       }
@@ -71,7 +73,7 @@ import generateTokenandSetCookie from "../utils/generateToken.js";
       })
 
    } catch (error) {
-      console.log("Error in signup controller",error.message);
+      console.log("Error in login controller",error.message);
       res.status(500).json({error:"Internal Server Error"})
    }
 }
@@ -79,7 +81,7 @@ import generateTokenandSetCookie from "../utils/generateToken.js";
 export const logout = (req, res) =>{
    try {
        res.cookie ("jwt","",{maxAge:0})
-       res.status(200).json({error:"Logged out successfully"})
+       res.status(200).json({message:"Logged out successfully"})
    } catch (error) {
       console.log("Error in signup controller",error.message);
       res.status(500).json({error:"Internal Server Error"})
