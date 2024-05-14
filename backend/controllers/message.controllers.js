@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReceiverSocketId ,io } from "../socket/socket.js";
 export const sendMessage = async (req,res) =>{
     try {
         const {message} = req.body;
@@ -30,6 +31,13 @@ export const sendMessage = async (req,res) =>{
       await Promise.all([conversation.save(),newMessage.save()])
 
 
+      const receiverSocketId = getReceiverSocketId(receiverId)
+
+      if(receiverSocketId) {
+        io.to(receiverSocketId).emit("newMessage",newMessage)
+      }
+
+
 // <------ It will take some extra time ------>
 
     /*  await conversation.save();
@@ -48,15 +56,11 @@ export const getMessages = async(req,res) =>{
         const {id : userToChat} = req.params;
         const senderId = req.user._id
 
-        // console.log("Sender ID:", senderId.fullName);
-        // console.log(req.user._id);
-        console.log("User to Chat ID:", userToChat);
 
         let conversation = await Conversation.findOne({
             participants : {$all : [senderId,userToChat]}
         }).populate("messages")
 
-         console.log(conversation);
 // if there is no conversation found return empty array
         if(!conversation) return res.status(200).json([])
         

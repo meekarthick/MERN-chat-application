@@ -13,7 +13,6 @@ import generateTokenandSetCookie from "../utils/generateToken.js";
          }
 
          const user = await User.findOne({username})
-         console.log(user);
          if(user){
             return res.status(400).json({error:"UserName already exists"})
          }
@@ -58,8 +57,6 @@ import generateTokenandSetCookie from "../utils/generateToken.js";
       const {username,password} = req.body;
       const user = await User.findOne({username})
       const isPassCorrect = await bcrypt.compare(password,user?.password || "")
-      console.log(user.username);
-      console.log(isPassCorrect);
       if(!user || !isPassCorrect){
          return res.status(400).json({error:"Invalid username or password"})
       }

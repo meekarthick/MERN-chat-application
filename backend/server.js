@@ -6,11 +6,13 @@ import cookieParser from "cookie-parser"
 import authRoutes from "./routes/auth.route.js"
 import messageRoutes from "./routes/message.routes.js"
 import userRoutes from "./routes/user.route.js"
+import {app,server} from "./socket/socket.js"
 
-const app = express()
+
+// const app = express()
 //configuring dot env files
 dotenv.config()
-const PORT = process.env.PORT || 2000
+const PORT = process.env.PORT || 5000
 
 
 //creating routes for login and log out using middleware
@@ -28,7 +30,7 @@ app.get('/',(req,res)=>{
 
  
 //creating server
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     connectToMongoDB();
     console.log(`Server is running PORT ${PORT}`);
 })
