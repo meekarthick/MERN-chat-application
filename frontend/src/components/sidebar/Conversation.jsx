@@ -10,8 +10,8 @@ const Conversation = ({conversation,emoji,lastIdx}) => {
     return (
         <>
             <div 
-            className={`flex gap-2 items-center hover:bg-red-400 rounded p-2 py-1 cursor-pointer
-            ${isSelected ? "bg-red-400" :""}
+            className={`flex gap-2 items-center hover:bg-red-500 text-white rounded p-2 py-1 cursor-pointer
+            ${isSelected ? "bg-red-500" :""}
             `}
             onClick={() => setSelectedConversation(conversation)}
             >
@@ -22,7 +22,7 @@ const Conversation = ({conversation,emoji,lastIdx}) => {
                 </div>
                 <div className='flex flex-col flex-1'>
                     <div className='flex gap-3 justify-between'>
-                        <p className='foont bold text-gray-200'>{conversation.fullName}</p>
+                        <p className='font-bold text-white'>{conversation.fullName}</p>
                         <span className='text-xl'>{emoji}</span>
                     </div>
 

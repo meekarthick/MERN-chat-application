@@ -14,13 +14,13 @@ const MessageContainer = () => {
    },[setSelectedConversation])
 
     return (
-        <div className='md:min-w-[450px] flex flex-col'>
+        <div className='flex flex-col w-full md:min-w-[450px]'>
             {!selectedConversation ? (<NoChatSelected />)
                 : (
                     <>
-                        <div className='bg-red-400 px-4 py-3 mb-2'>
+                        <div className='bg-red-500 px-4 py-3 mb-2'>
                             {/* <span className='label-text'>To : </span> */}
-                            <span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
+                            <span className='text-white font-bold'>{selectedConversation.fullName}</span>
                         </div>
                         <Messages />
                         <MessageInput />
@@ -38,7 +38,7 @@ const NoChatSelected = () => {
     const {authUser}=useAuthContext()
 
     return (
-        <div className=' flex items-center justify-center w-full h-full' >
+        <div className='flex items-center justify-center w-full h-full'>
             <div className='px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center'>
                 <p>{`Welcome 👋 ${authUser.fullName}`}</p>
                 <TiMessages className='text-3xl md:text-6xl text-center' />
@@ -46,26 +46,3 @@ const NoChatSelected = () => {
         </div>
     )
 }
-
-
-
-// import React from 'react'
-// import Messages from './Messages'
-// import MessageInput from './MessageInput'
-// const MessageContainer = () => {
-//     return (
-//         <div className='md:min-w-[450px] flex flex-col'>
-//             <>
-//                 <div className='bg-red-400 px-4 py-3 mb-2'>
-//                     {/* <span className='label-text'>To : </span> */}
-//                     <span className='text-gray-900 font-bold'>Pradeep</span>
-//                 </div>
-//                 <Messages />
-//                 <MessageInput />
-//             </>
-//         </div>
-//     )
-// }
-
-// export default MessageContainer 
-

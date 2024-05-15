@@ -16,13 +16,6 @@ const Messages = () => {
     }
   }, [messages, loading]);
 
-  // useEffect(() => {
-  //   if (!loading && messages.length > 0) {
-  //     // Redirect to the chat with the last message
-  //     history.push(`/chat/${messages[messages.length - 1]._id}`);
-  //   }
-  // }, [messages, loading, history]); // Include history in the dependency array
-  
 
   return (
     <div className='px-4 flex-1 overflow-auto'>
