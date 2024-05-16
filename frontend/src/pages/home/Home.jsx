@@ -5,8 +5,7 @@ console.log(window.innerWidth);
 const Home = () => {
   return (
     <div
-      className={`flex flex-col sm:flex-row rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-0 ${
-        window.innerWidth >= 916 ? 'md:h-[570px] md:w-[70vw]' :''
+      className={`flex flex-col sm:h-[90vh] sm:w-[90vw] w-90vw h-90vw sm:flex-row rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-0
       }`}
     >
       <div className="flex-grow flex sm:flex-column sm:h-[90vh] sm:w-[90vw]">
